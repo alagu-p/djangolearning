@@ -31,13 +31,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL='authentication.User'
+# AUTH_USER_MODEL = 'authentication.User'
+# AUTH_USER_MODEL = 'app.NewUser'
+AUTH_USER_MODEL = 'auth_3.User'
 
 # Application definition
 
 INSTALLED_APPS = [
-    'app',
-    'authentication',
+    # 'app',
+    # 'authentication',
+    'auth_3',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +49,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
 ]
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'basi_django.exceptions.core_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error',
+
+    'DEFAULT_AUTHENTICATION_CLASSES': ('auth_3.backends.JWTAuthentication'),
+
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
